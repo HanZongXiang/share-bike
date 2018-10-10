@@ -18,7 +18,7 @@ export default class NavLeft extends Component {
                         <Link to='/admin/home'>首页</Link>
                     </MenuItem>
                     <MenuItem key='第二页'>
-                        <Link to='/admin/secondPage'>第二页</Link>
+                        <Link to='/admin/order'>第二页</Link>
                     </MenuItem>
                 </Menu>
             </div>

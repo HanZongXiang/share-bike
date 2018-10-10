@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import { Breadcrumb } from 'antd'
 import './index.less'
 
 import {formatDate} from "../../utils";
 import axios from 'axios'
+
+const BreadcrumbItem = Breadcrumb.item
 
 export default class Header extends Component {
     constructor(props) {
@@ -20,7 +23,7 @@ export default class Header extends Component {
         })
     };
     getWeatherInfo() {
-        axios.get('http://t.weather.sojson.com/api/weather/city/101020100').then(res => {
+        axios.get('http://t.weather.sojson.com/api/weather/city/101010100').then(res => {
             // console.log(res)
             console.log(res.data.data.forecast[0])
 
@@ -59,7 +62,9 @@ export default class Header extends Component {
                 </div>
 
                 <div className="weather clearfix">
-                    <div className='breadcrumb fl'>首页</div>
+                    <div className='breadcrumb fl'>
+                        首页
+                    </div>
                     <div className='weather-wrap fr clearfix'>
                         <div className="date fl">
                             {this.state.time}

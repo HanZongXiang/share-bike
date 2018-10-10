@@ -6,9 +6,7 @@ import { Row,Col } from 'antd'
 import './index.less'
 
 export default class index extends Component {
-    constructor(props) {
-        super(props)
-    }
+    
 
     render() {
         return (

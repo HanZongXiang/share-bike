@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import './index.less'
+import notMatchImg from './img.gif'
 
 export default class notMatch extends Component {
-    constructor(props) {
-        super(props)
-    }
+    
 
     render() {
         return (
-            <div className='not-found'>
-                <div className='not-found-left'>
+            <div className='not-found clearfix'>
+                <div className='not-found-left fl'>
                     <div className='title'>Page Not Found!</div>
                     <div>
                         <p>404 你要找的页面没有找到</p>
@@ -22,8 +22,8 @@ export default class notMatch extends Component {
                         </ul>
                     </div>
                 </div>
-                <div className='not-found-img'>
-
+                <div className='not-found-img fl'>
+                    <img src={notMatchImg} alt=""/>
                 </div>
             </div>
         );
