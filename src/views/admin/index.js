@@ -12,12 +12,12 @@ export default class index extends Component {
         return (
             <div className='admin'>
                 <Row>
-                    <Col span={4}>
+                    <Col span={4} className='nav-left-wrap'>
                         <NavLeft></NavLeft>
                     </Col>
-                    <Col span={20}>
+                    <Col span={20} className='content-wrap'>
                         <Header></Header>
-                        <div className='content-wrap'>
+                        <div className='content'>
                             {this.props.children}
                         </div>
                         <Footer></Footer>
