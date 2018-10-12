@@ -1,29 +1,39 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import './index.less'
-import notMatchImg from './img.gif'
 
 export default class notMatch extends Component {
-    
-
     render() {
         return (
-            <div className='not-found clearfix'>
-                <div className='not-found-left fl'>
-                    <div className='title'>Page Not Found!</div>
-                    <div>
-                        <p>404 你要找的页面没有找到</p>
-                        <strong>如有不满你也无可奈何</strong>
+            <div classNameName='not-found clearfix'>
+                <div className="top-bar-agile">
+                    <div className="logo-agileits">
+                        <Link to='/admin/home'>
+                            <img src="/imgs/logo.png" alt=" " />
+                        </Link>
+                    </div>
+                    <div className="nav-agileinfo">
                         <ul>
-                            <li>或者你可以选择</li>
                             <li>
-                                <Link to='/admin/home'>回首页</Link>
+                                <Link to='/admin/home'>Home</Link>
+                            </li>
+                            <li>
+                                <Link to='/admin/order'>Order</Link>
+                            </li>
+                            <li>
+                                <Link to='/admin/bar'>Bar</Link>
+                            </li>
+                            <li>
+                                <Link to='/admin/pie'>Pie</Link>
                             </li>
                         </ul>
                     </div>
+                    <div className="clear"></div>
                 </div>
-                <div className='not-found-img fl'>
-                    <img src={notMatchImg} alt=""/>
+                <div className="content-w3">
+                    <h1>404</h1>
+                    <h2>Something went wrong</h2>
+                    <p>The page you are looking for has been removed,had its name changed or temporarily unavailable</p>
                 </div>
             </div>
         );

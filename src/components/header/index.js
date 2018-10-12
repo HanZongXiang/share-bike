@@ -1,17 +1,14 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
-import { Breadcrumb } from 'antd'
 import './index.less'
 
 import {formatDate} from "../../utils";
 import axios from 'axios'
 
-const BreadcrumbItem = Breadcrumb.item
-
 export default class Header extends Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
     getTimeStr = () => {
         setInterval(() => {
@@ -36,6 +33,7 @@ export default class Header extends Component {
         })
     }
 
+
     componentWillMount() {
         this.getTimeStr()
         this.getWeatherInfo()
@@ -51,6 +49,8 @@ export default class Header extends Component {
             <div className='header'>
                 <div className="userInfo clearfix">
 
+                    <h2 className='title fl'>共享单车后台系统</h2>
+
                     <div className='fr'>
                         <Link to='/logout'>退出</Link>
                     </div>
@@ -63,7 +63,7 @@ export default class Header extends Component {
 
                 <div className="weather clearfix">
                     <div className='breadcrumb fl'>
-                        首页
+                        <Link to='/admin/home'>首页</Link>
                     </div>
                     <div className='weather-wrap fr clearfix'>
                         <div className="date fl">

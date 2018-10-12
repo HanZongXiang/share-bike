@@ -8,9 +8,9 @@ const Option = Select.Option
 
 
 class Order extends Component {
-  constructor(props){
-    super(props);
-  }
+  // constructor(props){
+  //   super(props);
+  // }
 
   state = {
     tableData: [],
@@ -21,7 +21,7 @@ class Order extends Component {
     endItem:{},
     isShowModal:false,
     loading: {
-      spining:true,
+      spinning:true,
       tip: '数据正在拼命加载中',
       size:'large'
     }
@@ -44,7 +44,11 @@ class Order extends Component {
   // 获取表格数据
   getTableData() {
     this.setState({
-      isLoading:true
+      // isLoading:true
+      loading: {
+        ...this.state.loading,
+        spinning: true
+      }
     },() => {
       axios.get('/order/list', this.params).then(res => {
         if (res.code == 0) {
@@ -55,12 +59,19 @@ class Order extends Component {
               return item
             }),
             total: res.result.total_count,
-            isLoading:false
+            // isLoading:false
+            loading: {
+              ...this.state.loading,
+              spinning: false
+            }
           })
         }
       }).catch(err => {
         this.setState({
-          isLoading:false
+          loading: {
+            ...this.state.loading,
+            spining: false
+          }
         })
       })
     })
@@ -90,17 +101,32 @@ class Order extends Component {
 
   // 确认结束订单
   handleFinish = () => {
-
-    axios.get('/order/finish_order',this.state.endItem.id).then(res => {
+    let id = this.state.selectedItem[0].id
+    axios.get('/order/finish_order',{id}).then(res => {
       if (res.code == 0) {
         // console.log(res)
         this.setState({
           isShowModal:false
         })
+        // Modal.success({
+        //   title:'操作信息',
+        //   content: '结束订单成功'
+        // })
         this.getTableData()
         message.success('成功结束订单')
       }
     })
+  }
+
+  // 跳转到详情页
+  handleDetails = () => {
+    let selectedItem = this.state.selectedItem
+    console.log(this.state.selectedItem)
+    if (selectedItem) {
+      window.open(`/#/order/details/${selectedItem[0].id}`,'_blank')
+    } else {
+      message.info('请选择一项订单继续进行操作')
+    }
   }
   
   componentWillMount() {
@@ -262,7 +288,7 @@ class Order extends Component {
           </Form>
         </Card>
         <Card className='btn-wrap' style={{ marginTop: -1 }}>
-          <Button type='primary'>订单详情</Button>
+          <Button type='primary' onClick={this.handleDetails}>订单详情</Button>
           <Button type='primary' onClick={this.handleDone}>结束订单</Button>
         </Card>
         <Card style={{marginTop:-1}}>
@@ -270,7 +296,7 @@ class Order extends Component {
                  columns={tableColumns} 
                  dataSource={this.state.tableData}
                  pagination={pagination} 
-                 loading={this.state.isLoading} 
+                 loading={this.state.loading} 
                  rowSelection={rowSelection}
           ></Table>       
         </Card>

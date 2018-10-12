@@ -1,4 +1,4 @@
-import * as fetch from 'axios'
+// import * as fetch from 'axios'
 
 export function formatDate(unix) {
     function fixedZero(num) {
@@ -13,8 +13,7 @@ export function formatDate(unix) {
     let hour = fixedZero(date.getHours())
     let minute = fixedZero(date.getMinutes())
     let second = fixedZero(date.getSeconds())
-    let timeStr = ''
-    return timeStr = `${year}-${month}-${day} ${hour}:${minute}:${second}`
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`
 }
 
 // const xhr = fetch.create({
