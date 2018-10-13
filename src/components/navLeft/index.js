@@ -1,20 +1,34 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import actionCreators from '../../redux/actionCreator'
 import './index.less'
 
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
 
-export default class NavLeft extends Component {
+class NavLeft extends Component {
     // constructor(props) {
     //     super(props)
     // }
 
+    clickMenu = ({item,key,keyPath}) => {
+        console.log(item, key, keyPath)
+        let text = item.props.children.props.children
+        if(typeof(text) == 'object') {
+            text = item.props.children.props.children[1]
+        } 
+        // this.props.dispatch({type:'CHANGE_MENU_ITEM',text})
+        // console.log(this.props.action);
+        this.props.action.changeMenuItem(text)
+    }
+
     render() {
         return (
             <div className='nav-left'>
-                <Menu mode='vertical' theme="dark">
+                <Menu mode='vertical' theme="dark" onClick={this.clickMenu}>
                     <MenuItem key='/首页'>
                         <Link to='/admin/home'><Icon type='home'></Icon>首页</Link>
                     </MenuItem>
@@ -34,3 +48,12 @@ export default class NavLeft extends Component {
         );
     }
 }
+
+export default connect(
+    null,
+    function mapActionToProps (dispatch) {
+        return {
+            action: bindActionCreators(actionCreators,dispatch)
+        }
+    }
+)(NavLeft)

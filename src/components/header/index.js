@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import './index.less'
-
 import {formatDate} from "../../utils";
 import axios from 'axios'
+import { connect } from 'react-redux'
 
-export default class Header extends Component {
+class Header extends Component {
     // constructor(props) {
     //     super(props)
     // }
@@ -37,6 +37,7 @@ export default class Header extends Component {
     componentWillMount() {
         this.getTimeStr()
         this.getWeatherInfo()
+        console.log(this.props);
     }
 
     state = {
@@ -63,7 +64,7 @@ export default class Header extends Component {
 
                 <div className="weather clearfix">
                     <div className='breadcrumb fl'>
-                        <Link to='/admin/home'>首页</Link>
+                        {this.props.menuText.menuItemText}
                     </div>
                     <div className='weather-wrap fr clearfix'>
                         <div className="date fl">
@@ -78,3 +79,12 @@ export default class Header extends Component {
         );
     }
 }
+
+// connect接收两个参数，一个参数叫mapStateToProps,一个参数叫mapActionToProps
+export default connect(
+    function mapStateToProps(state) {
+        return {
+            menuText: state
+        }
+    }
+)(Header)

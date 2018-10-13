@@ -121,7 +121,7 @@ export default class Details extends Component {
             <ul>
               <li>
                 <span className='detail-left'>用车模式</span>
-                <span className='detail-right'>{detail.mode == 1 ? '服务区' : '停车点'}</span>
+                <span className='detail-right'>{detail.mode === 1 ? '服务区' : '停车点'}</span>
               </li>
               <li>
                 <span className='detail-left'>订单编号</span>
